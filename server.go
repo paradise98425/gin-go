@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/paradise98425/go-gin/controller"
+	"github.com/paradise98425/go-gin/middlewares"
 	"github.com/paradise98425/go-gin/service"
 )
 
@@ -13,7 +14,7 @@ var (
 
 func main() {
 	server := gin.New()
-	server.Use(gin.Recovery())
+	server.Use(gin.Recovery(), middlewares.Logger())
 
 	server.GET("/videos", func(ctx *gin.Context) {
 		ctx.JSON(200, VideoController.FindAll())
