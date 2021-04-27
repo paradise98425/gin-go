@@ -8,20 +8,24 @@ type VideoService interface {
 }
 
 type videoService struct {
-	videos []entity.Video
+	videos []entity.Video //videos as slice of video
 }
 
+//function to get the new instance of video
 func New() VideoService {
+	//returning a pointer to struct
 	return &videoService{
 		videos: []entity.Video{},
 	}
 }
 
+//pass the struct videoService to implement the interface
 func (service *videoService) Save(video entity.Video) entity.Video {
 	service.videos = append(service.videos, video)
 	return video
 }
 
+//pass the struct videoService
 func (service *videoService) FindAll() []entity.Video {
 	return service.videos
 }
