@@ -7,14 +7,17 @@ import (
 )
 
 var (
-	videoService service.VideoService = service.New()
+	videoService    service.VideoService       = service.New()
 	VideoController controller.VideoController = controller.New(videoService)
 )
 
 func main() {
 	server := gin.Default()
-	server.GET("/posts", func(ctx *gin.Context) {
+	server.GET("/videos", func(ctx *gin.Context) {
 		ctx.JSON(200, VideoController.FindAll())
+	})
+	server.GET("/videos", func(ctx *gin.Context) {
+		ctx.JSON(200, VideoController.Save(ctx))
 	})
 
 	server.Run(":8081")
