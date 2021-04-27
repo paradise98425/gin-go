@@ -8,6 +8,7 @@ import (
 	"github.com/paradise98425/go-gin/controller"
 	"github.com/paradise98425/go-gin/middlewares"
 	"github.com/paradise98425/go-gin/service"
+	gindump "github.com/tpkeeper/gin-dump"
 )
 
 var (
@@ -23,7 +24,8 @@ func setupLogOutput() {
 func main() {
 	setupLogOutput()
 	server := gin.New()
-	server.Use(gin.Recovery(), middlewares.Logger(), middlewares.BasicAuth())
+	server.Use(gin.Recovery(), middlewares.Logger(),
+		middlewares.BasicAuth(), gindump.Dump())
 
 	server.GET("/videos", func(ctx *gin.Context) {
 		ctx.JSON(200, VideoController.FindAll())
