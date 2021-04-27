@@ -13,7 +13,7 @@ var (
 
 func main() {
 	server := gin.New()
-	server.Use(gin.Recovery(), gin.Logger())
+	server.Use(gin.Recovery())
 
 	server.GET("/videos", func(ctx *gin.Context) {
 		ctx.JSON(200, VideoController.FindAll())
